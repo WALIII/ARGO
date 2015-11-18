@@ -1,18 +1,22 @@
 /*
-  % ARGO behavioral control for 
+   ===========================================
+   |        ARGO Behavioral Rig              |
+   ===========================================
 
-  The hardware:
-  * Sensors connected to Arduino input pins
+ 11.18.2015
+ WALIII
+
+  Hardware:
+  * Temperature and Humidity sensors connected to Arduino input pins
+  * Digital Switches on each box ( BOX01 thoguh BOX06)
   * Arduino connected to computer via USB cord
 
-  The software:
+  Software:
   *Arduino programmer
   *Processing (download the Processing software here: https://www.processing.org/download/
   *Download the Software Serial library from here: http://arduino.cc/en/Reference/softwareSerial
 
-  Created 12 November 2014
-  By Elaine Laguerta
-  http://url/of/online/tutorial.cc
+
 
 */
 
