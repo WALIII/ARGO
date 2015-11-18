@@ -4,7 +4,7 @@
    ===========================================
 
  11.18.2015
- WALIII
+ by: WALIII
 
   Hardware:
   * Temperature and Humidity sensors connected to Arduino input pins
