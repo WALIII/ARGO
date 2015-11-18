@@ -7,7 +7,7 @@ ARGO is the behavioral imaging rig in the Gardner Lab, that contains 12 boxes fo
 
 
 
-![ScreenShot](opened.png)
+![ScreenShot](open.png)
 
 
-![ScreenShot](opened2.png)
+![ScreenShot](open2.png)
