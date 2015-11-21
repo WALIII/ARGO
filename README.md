@@ -17,13 +17,9 @@ ARGO is the behavioral imaging rig in the Gardner Lab, that contains 12 boxes fo
 Program running on CIRCE outputs one .csv per day that includes Max/min Humidity and Temperature sampled every 2 seconds, as well as the BOX status for each 'active' BOX in the rig Will also list the name of the bird in each BOX.
 
 
-![ScreenShot](closed.png)
+![ScreenShot](Screen01.png)
 
 
-![ScreenShot](open.png)
-
-
-![ScreenShot](open2.png)
 
 ### Data Distribution
 
