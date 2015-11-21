@@ -24,22 +24,25 @@ import processing.serial.*;
 Serial myPort; //creates a software serial port on which you will listen to Arduino
 Table dataTable; //table where we will read in and store values. You can name it something more creative!
 Table table;
-
+int[] BOXa = {1,1,0,0,1,1 }; 
 int numReadings = 5; //keeps track of how many readings you'd like to take before writing the file.
 int readingCounter = 0; //counts each reading to compare to numReadings.
-  String currentday = str(minute());
+  String currentday = str(day());
 int spacer = 0;
 float H = 0;
 float T = 0;
-float BOX_VAL = 1;
-long currentMillis = millis();
-long previousMillis = 0;
-float timer = 0;
-String TXT = "Calculating...";
+float[] BOX_VAL = { 1,1,1,1,1,1 }; 
+long[] currentMillis = {millis(),millis(),millis(),millis(),millis(),millis()};
+long[] previousMillis = {0,0,0,0,0,0};
+float[] timer = {0,0,0,0,0,0};
+String[] N = { "Pls", "work" ,"Mkay?"}; 
+String[] TXT = {"","","","","",""};
 String fileName;
+int i = 0;
+
 void setup()
 {
-    size(400, 500, P3D);
+    size(410, 600, P3D);
   String portName = Serial.list()[2];
 table = new Table();
 myPort = new Serial(this, portName, 9600); //set up your port to listen to the serial port
@@ -59,6 +62,11 @@ myPort = new Serial(this, portName, 9600); //set up your port to listen to the s
   table.addColumn("Temperature (Celcius)");
 table.addColumn("Temperature (Fahrenheit)");
 table.addColumn("BOX 01 DoorStatus");
+table.addColumn("BOX 02 DoorStatus");
+table.addColumn("BOX 03 DoorStatus");
+table.addColumn("BOX 04 DoorStatus");
+table.addColumn("BOX 05 DoorStatus");
+table.addColumn("BOX 06 DoorStatus");
 
 //MULTIDAY TABLE
 dataTable = new Table();
@@ -71,7 +79,11 @@ dataTable.addColumn("MIN Humidity");
 dataTable.addColumn("MAX Temperature (Celcius)");
 dataTable.addColumn("MIN Temperature (Celcius)");
 dataTable.addColumn("BOX 01 social time");
-
+dataTable.addColumn("BOX 02 social time");
+dataTable.addColumn("BOX 03 social time");
+dataTable.addColumn("BOX 04 social time");
+dataTable.addColumn("BOX 05 social time");
+dataTable.addColumn("BOX 06 social time");
 }
 
 void serialEvent(Serial myPort){
@@ -83,12 +95,12 @@ void serialEvent(Serial myPort){
 
     TableRow newRow = table.addRow(); //add a row for this new reading
     newRow.setInt("id", table.lastRowIndex());//record a unique identifier (the row's index)
-BOX_VAL[1] = sensorVals[3];
-BOX_VAL[2] = sensorVals[4];
-BOX_VAL[3] = sensorVals[5];
-BOX_VAL[4] = sensorVals[6];
-BOX_VAL[5] = sensorVals[7];
-BOX_VAL[6] = sensorVals[8];
+BOX_VAL[0] = sensorVals[3];
+BOX_VAL[1] = sensorVals[4];
+BOX_VAL[2] = sensorVals[5];
+BOX_VAL[3] = sensorVals[6];
+BOX_VAL[4] = sensorVals[7];
+BOX_VAL[5] = sensorVals[8];
 
     //record time stamp
 newRow.setInt("year", year());
@@ -103,19 +115,24 @@ newRow.setFloat("Humidity", sensorVals[0]);
 newRow.setFloat("Temperature (Celcius)", sensorVals[1]);
 newRow.setFloat("Temperature (Fahrenheit)", sensorVals[2]);
 newRow.setFloat("BOX 01 DoorStatus", sensorVals[3]);
+newRow.setFloat("BOX 02 DoorStatus", sensorVals[4]);
+newRow.setFloat("BOX 03 DoorStatus", sensorVals[5]);
+newRow.setFloat("BOX 04 DoorStatus", sensorVals[6]);
+newRow.setFloat("BOX 05 DoorStatus", sensorVals[7]);
+newRow.setFloat("BOX 06 DoorStatus", sensorVals[8]);
 
 readingCounter++; //optional, use if you'd like to write your file every numReadings reading cycles
     T = sensorVals[1];
     H = sensorVals[0];
     ////saves the table as a csv in the same folder as the sketch every numReadings.
     //if (readingCounter % numReadings ==0)//The % is a modulus, a math operator that signifies remainder after division. The if statement checks if readingCounter is a multiple of numReadings (the remainder of readingCounter/numReadings is 0)
-    String compareday = str(minute());
+    String compareday = str(day());
     if (currentday.equals(compareday) == false)
     {
       print(currentday);
       print("  vs  ");
-      println(str(minute()));
-     currentday = str(minute());
+      println(str(day()));
+     currentday = str(day());
      fileName = str(year()) + str('_')+ str(month()) + str('_')+ str(day())  + str(minute())+ str('_')+ str(table.lastRowIndex()); //this filename is of the form year+month+day+readingCounter
 
       String[] animals = new String[3];
@@ -154,14 +171,18 @@ String filename = join(animals, "");
     newRow2.setFloat("MIN Humidity", minH);
     newRow2.setFloat("MAX Temperature (Celcius)", maxC);
     newRow2.setFloat("MIN Temperature (Celcius)", minC);
-    newRow2.setFloat("BOX 01 social time", timer);
-     timer = 0;
-
+    newRow2.setFloat("BOX 01 social time", timer[0]);
+    newRow2.setFloat("BOX 02 social time", timer[1]);
+    newRow2.setFloat("BOX 03 social time", timer[2]);
+    newRow2.setFloat("BOX 04 social time", timer[3]);
+    newRow2.setFloat("BOX 05 social time", timer[4]);
+    newRow2.setFloat("BOX 06 social time", timer[5]);
+timer[0] = 0; timer[1] = 0; timer[2] = 0; timer[3] = 0; timer[4] = 0; timer[5] = 0;
 
 
    //saveTable(table, "/Users/ARGO/Documents/DATA/new2.csv");
       saveTable(table, filename); //Woo! save it to your computer. It is ready for all your spreadsheet dreams.
-    saveTable(dataTable, "/Users/glab/Documents/DATA/LOGS/new2.csv");
+    saveTable(dataTable, "/Users/glab/Documents/DATA/LOGS/Aggregate_Data.csv");
  table.clearRows();
   }
    }

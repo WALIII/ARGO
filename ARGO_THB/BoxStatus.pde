@@ -9,15 +9,12 @@
 void draw_ui() {
 
 // ACTIVE BOXES //
-  int BOX[1] = LNY18;
-  int BOX[2] = 0;
-  int BOX[3] = LNY20;
-  int BOX[4] = LNY21;
-  int BOX[5] = LNY22;
-  int BOX[6] = LNY23;
 
 
- }
+
+
+
+ 
 
 //========[ TEMPERATURE HUMIDITY LOGGER  ]==========//
 
@@ -40,35 +37,44 @@ fill(200, 200, 200, 204);
 textSize(12);
 text("=============[ BOX  STATUS ]====================", 10, 190);
 
-spacer = 0;
-for (int i = 0; i < 6; i = i+1) {
 
-if(BOX[i] != 0){
+for (int i = 0; i < 6; i = i+1) {
+int ii = i+1;
+if(BOXa[i] == 1){
+  if(BOX_VAL[i] ==0){
 spacer = spacer+20;
-  long currentMillis[i] = millis();
+  currentMillis[i] = millis();
 
   if(currentMillis[i] - previousMillis[i] >= 1000) {
     // save the last time you blinked the LED
     previousMillis[i] = currentMillis[i];
     timer[i] = timer[i]+1; }
 
-TXT[i] = str('BOX')+ str(' ') + str(i) + str('OPEN');
-fill(200, 0, 0, 204); textSize(32); text(TXT[i], 10, 220+spacer);
-if(timer > 5){
-fill(0, 200, 0, 204); textSize(32); text(timer[i], 10, 250+spacer); }
-else{
-fill(200, 0, 0, 204); textSize(32); text(timer[i], 10, 250+spacer);}
+N[0] = "BOX"; 
+N[1] = str(ii); 
+N[2] = "OPEN";
+TXT[i]= join(N, " ");
 
+fill(200, 0, 0, 204); textSize(32); text(TXT[i], 10, 220+60*i);
+if(timer[i] > 5){
+fill(0, 200, 0, 204); textSize(32); text(timer[i], 10, 250+60*i); }
+else{
+fill(200, 0, 0, 204); textSize(32); text(timer[i], 10, 250+60*i);}
+  }
 
 else{
 
-TXT[i] = str('BOX')+ str(' ') + str(i) + str('CLOSED');
-{ fill(0, 102, 153, 204); textSize(32); text(TXT[i], 10, 220+spacer);
-if(timer > 5){
-fill(0, 200, 0, 204); textSize(32); text(timer[i], 10, 250+spacer); }
+N[0] = "BOX"; 
+N[1] = str(ii); 
+N[2] = "CLOSED";
+TXT[i]= join(N, " ");
+{ fill(0, 102, 153, 204); textSize(32); text(TXT[i], 10, 220+60*i);
+if(timer[i] > 5){
+fill(0, 200, 0, 204); textSize(32); text(timer[i], 10, 250+60*i); }
 else{
-fill(200, 0, 0, 204); textSize(32); text(timer[i], 10, 250+spacer);}
+fill(200, 0, 0, 204); textSize(32); text(timer[i], 10, 250+60*i);}
   }
 }
+
 }
-}
+}}
