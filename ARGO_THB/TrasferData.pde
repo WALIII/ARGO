@@ -1,10 +1,20 @@
 // Transfer data at the end of the day, to an appropriately named folder
 
 
+
+
 BOXES_ACTIVE = [ 1 ]
-int Bird_BOX01 = LNY18;
-int Bird_BOX02 = LNY19;
-int Bird_BOX03 = LNY20;
-int Bird_BOX04 = LNY21;
-int Bird_BOX05 = LNY22;
-int Bird_BOX06 = LNY23;
+int BOX[1] = LNY18;
+int BOX[2] = 0;
+int BOX[3] = LNY20;
+int BOX[4] = LNY21;
+int BOX[5] = LNY22;
+int BOX[6] = LNY23;
+
+ BOX_MASTER = [ Bird]
+for i = 1:size(BOX)
+if BOX[1] == "0"{}
+else{
+
+
+}
