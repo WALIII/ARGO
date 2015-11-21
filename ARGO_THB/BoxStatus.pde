@@ -1,5 +1,7 @@
-// Assign Boxes and parameters for Boxes in this script. To be run with ARGO_TBH
-// WALIII
+// Assign Boxes and parameters for Boxes in this script. Run with ARGO_TBH
+
+// c: 11.18.2015
+// by: WALIII
 
 
 

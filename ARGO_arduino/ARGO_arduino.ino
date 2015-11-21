@@ -1,6 +1,9 @@
 // TRANSFER Temperature, Humidity and BOX door status to ARGO
 // created by WALIII  // DHT library created by ladyada
-// 11/21/2015
+
+
+//c: 11.18.2015
+//by: WALIII
 
 
 
