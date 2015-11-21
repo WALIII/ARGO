@@ -6,7 +6,7 @@
 
 void draw_ui() {
 
-  BOXES_ACTIVE = [ 1 ]
+// ACTIVE BOXES //
   int BOX[1] = LNY18;
   int BOX[2] = 0;
   int BOX[3] = LNY20;
@@ -51,7 +51,7 @@ spacer = spacer+20;
     timer[i] = timer[i]+1; }
 
 TXT[i] = str('BOX')+ str(' ') + str(i) + str('OPEN');
-fill(200, 0, 0, 204); textSize(32); text(TXT, 10, 220+spacer);
+fill(200, 0, 0, 204); textSize(32); text(TXT[i], 10, 220+spacer);
 if(timer > 5){
 fill(0, 200, 0, 204); textSize(32); text(timer[i], 10, 250+spacer); }
 else{
@@ -61,7 +61,7 @@ fill(200, 0, 0, 204); textSize(32); text(timer[i], 10, 250+spacer);}
 else{
 
 TXT[i] = str('BOX')+ str(' ') + str(i) + str('CLOSED');
-{ fill(0, 102, 153, 204); textSize(32); text(TXT, 10, 220+spacer);
+{ fill(0, 102, 153, 204); textSize(32); text(TXT[i], 10, 220+spacer);
 if(timer > 5){
 fill(0, 200, 0, 204); textSize(32); text(timer[i], 10, 250+spacer); }
 else{

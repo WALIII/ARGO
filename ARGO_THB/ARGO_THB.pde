@@ -12,9 +12,9 @@
   * Arduino connected to computer via USB cord
 
   Software:
-  *Arduino programmer
-  *Processing (download the Processing software here: https://www.processing.org/download/
-  *Download the Software Serial library from here: http://arduino.cc/en/Reference/softwareSerial
+  * Arduino programmer
+  * Processing (download the Processing software here: https://www.processing.org/download/
+  * Download the Software Serial library from here: http://arduino.cc/en/Reference/softwareSerial
 
 
 
@@ -28,12 +28,14 @@ Table table;
 int numReadings = 5; //keeps track of how many readings you'd like to take before writing the file.
 int readingCounter = 0; //counts each reading to compare to numReadings.
   String currentday = str(minute());
+int spacer = 0;
 float H = 0;
 float T = 0;
-float STAT = 1;
+float BOX_VAL = 1;
 long currentMillis = millis();
 long previousMillis = 0;
 float timer = 0;
+String TXT = "Calculating...";
 String fileName;
 void setup()
 {
@@ -81,7 +83,12 @@ void serialEvent(Serial myPort){
 
     TableRow newRow = table.addRow(); //add a row for this new reading
     newRow.setInt("id", table.lastRowIndex());//record a unique identifier (the row's index)
-STAT = sensorVals[3];
+BOX_VAL[1] = sensorVals[3];
+BOX_VAL[2] = sensorVals[4];
+BOX_VAL[3] = sensorVals[5];
+BOX_VAL[4] = sensorVals[6];
+BOX_VAL[5] = sensorVals[7];
+BOX_VAL[6] = sensorVals[8];
 
     //record time stamp
 newRow.setInt("year", year());
@@ -163,7 +170,7 @@ String filename = join(animals, "");
 void draw()
 {
 draw_ui();
-  //visualize your sensor data in real time here! In the future we hope to add some cool and useful graphic displays that can be tuned to different ranges of values.
+  // Add Visualization here one day...
 }
 
 void stop() {
