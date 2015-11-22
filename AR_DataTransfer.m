@@ -21,9 +21,9 @@ function AR_DataTransfer(DIR)
 if nargin<1 | isempty(DIR), DIR=pwd; end
 % Start in ABA_ACTIVE directory
 INPUT = tdfread('INPUT.txt','\t');
-BOX_ID = cellstr(INPUT.BOX_ID)
-STATUS = cellstr(INPUT.STATUS)
-BIRD_ID = cellstr(INPUT.BIRD_ID)
+BOX_ID = cellstr(INPUT.BOX_ID);
+STATUS = INPUT.STATUS;
+BIRD_ID = cellstr(INPUT.BIRD_ID);
 
 
 path = pwd; % code will start in ABA_ACTIVE
@@ -33,14 +33,16 @@ disp('Processing Data...');
 [nblanks formatstring]=fb_progressbar(100);
 fprintf(1,['Progress:  ' blanks(nblanks)]);
 
-for i=1:length(BOXID)
+for i=1:length(BOX_ID)
 
-current_path = strcat(path,'/',BOX_ID{1});
+current_path = strcat(path,'/',BOX_ID{i});
 current_date =  datetime('today');
 current_date = datestr(current_date);
-file_ending = strcat(BIRD_ID{1},'/',current_date)
-local_copy_path = strcat(path,'/','BIRD_DATA','/',file_ending); % put a copy in ABA_ACTIVE/BIRD_DATA
-destined_path = strcat('/Users/ARGO/Documents/DATA/PROC',file_ending); % put processed data here...
+file_ending = strcat(BIRD_ID{i},'/',current_date)
+% put a copy in ABA_ACTIVE/BIRD_DATA
+local_copy_path = strcat(path,'/','BIRD_DATA','/',file_ending); 
+ % put processed data here...
+destined_path = strcat('/Users/ARGO/Documents/DATA/PROC','/',file_ending);
 
 cd(current_path) % GO into box, copy .mov data into the current date
 
@@ -49,15 +51,22 @@ cd(current_path) % GO into box, copy .mov data into the current date
  filenames=mov_listing;
 
 disp('Moving Files...');
+mkdir(local_copy_path);
 for ii = 1:length(mov_listing)
-   movefilefile(filenames{i},local_copy_path)
+   movefile(filenames{ii},local_copy_path)
 end
 
+mkdir(destined_path);
  copyfile(local_copy_path,destined_path)
 disp('Parsing Data...');
  cd(destined_path);
         FS_AV_Parse();
+        if STATUS == 2
+            % Automated template matching, and potentially ROI
+            % extraction...
+        end
+        
     cd(path); % go back to the original folder in ARGO or calypso
 end
 end
-end
+
