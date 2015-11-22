@@ -14,15 +14,15 @@ ARGO is the behavioral imaging rig in the Gardner Lab, that contains 12 boxes fo
 
 
 ### Temperature, Humidity, Social Time Tracker
-Program running on CIRCE outputs one .csv per day that includes Max/min Humidity and Temperature sampled every 2 seconds, as well as the BOX status for each 'active' BOX in the rig Will also list the name of the bird in each BOX.
+CIRCE outputs one .csv per day that includes Temperature, Humidity as and the BOX door status for each 'active' BOX in the rig, sampled and timestamped every 2 seconds. Aggregate_Data will also record a column for the name of the bird in each BOX.
 
 
 ![ScreenShot](Screen01.png)
 
 
 
-### Data Distribution
+### STAGE TWO: DATA PARSING
 
-CIRCE will distribute data to other computers for analysis. Collects Data after processing, and places it on a RAID for analysis.
+CIRCE runs a MATLAB script once per day, that will gather data from acquisition computers, pre-process the incoming .mov files (seperate audio/video) and distribute them to a host RAID for future analysis. 
 
-STATUS Page updates the current status of all Data collected over the past several days.
+STATUS Page updates the current status of all Data collected over the past several days, and will update with graphs for each BOX that is active.
