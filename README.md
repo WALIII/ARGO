@@ -19,10 +19,22 @@ CIRCE outputs one .csv per day that includes Temperature, Humidity as and the BO
 
 ![ScreenShot](Screen01.png)
 
+### MONITOR DATA
+data collection, and a brief history of Temperature, Humidity and # of songs collected can be monitored in real time via a constantly uploaded/hosted image.
+
+![ScreenShot](LoggerExample.png)
 
 
 ### STAGE TWO: DATA PARSING
 
-CIRCE runs a MATLAB script once per day, that will gather data from acquisition computers, pre-process the incoming .mov files (seperate audio/video) and distribute them to a host RAID for future analysis. 
+CIRCE runs a MATLAB script once per day, that will gather data from acquisition computers, pre-process the incoming .mov files (seperate audio/video) and distribute them to a host RAID for future analysis.
+
+#### experiment status
+experiment status is defined by a .tsv text file, and is used to get bird's IDs that are in each BOX. This can be changed on the fly, and it constantly updates all monitoring and logging programs.
+
+
+![ScreenShot]('InputImage.png')
+
+
 
 STATUS Page updates the current status of all Data collected over the past several days, and will update with graphs for each BOX that is active.

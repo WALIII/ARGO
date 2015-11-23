@@ -14,12 +14,13 @@ function AR_DataTransfer(DIR)
 % first parse all data in the acquisition pipeline, then parse all
 % subsequent runs at midnight). This is done in case birds are switched out
 % of cages within a day, such that there is no mixing birds in the analysis
-% later on. This shouldn't be an issue, if the BIRD IDs all match...
+% later on. This shouldn't be an issue, if the BIRD IDs all match, and the text
+% is allways up-to-date.
 
 % *** Start in ABA_ACTIVE directory ***
 
 if nargin<1 | isempty(DIR), DIR=pwd; end
-% Start in ABA_ACTIVE directory
+% Start in ABA_ACTIVE directory, read text file, that dictates the experiment status.
 INPUT = tdfread('INPUT.txt','\t');
 BOX_ID = cellstr(INPUT.BOX_ID);
 STATUS = INPUT.STATUS;
@@ -40,7 +41,7 @@ current_date =  datetime('today');
 current_date = datestr(current_date);
 file_ending = strcat(BIRD_ID{i},'/',current_date)
 % put a copy in ABA_ACTIVE/BIRD_DATA
-local_copy_path = strcat(path,'/','BIRD_DATA','/',file_ending); 
+local_copy_path = strcat(path,'/','BIRD_DATA','/',file_ending);
  % put processed data here...
 destined_path = strcat('/Users/ARGO/Documents/DATA/PROC','/',file_ending);
 
@@ -65,8 +66,7 @@ disp('Parsing Data...');
             % Automated template matching, and potentially ROI
             % extraction...
         end
-        
+
     cd(path); % go back to the original folder in ARGO or calypso
 end
 end
-
