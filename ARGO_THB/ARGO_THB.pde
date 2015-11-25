@@ -21,10 +21,12 @@
 */
 
 import processing.serial.*;
-Serial myPort; //creates a software serial port on which you will listen to Arduino
+
 Table dataTable; //table where we will read in and store values. You can name it something more creative!
 Table table;
-int[] BOXa = {1,1,0,0,1,1 }; 
+Serial myPort; 
+int[] BOXa = {0,0,0,0,0,0 }; 
+String[] BIRD_ID = {"","","","","",""}; 
 int numReadings = 5; //keeps track of how many readings you'd like to take before writing the file.
 int readingCounter = 0; //counts each reading to compare to numReadings.
   String currentday = str(day());
@@ -37,7 +39,7 @@ long[] previousMillis = {0,0,0,0,0,0};
 float[] timer = {0,0,0,0,0,0};
 String[] N = { "Pls", "work" ,"Mkay?"}; 
 String[] TXT = {"","","","","",""};
-String fileName;
+String fileName;// = str(year()) + str('_')+ str(month()) + str('_')+ str(day());
 int i = 0;
 
 void setup()
@@ -45,11 +47,12 @@ void setup()
     size(410, 600, P3D);
   String portName = Serial.list()[2];
 table = new Table();
+
 myPort = new Serial(this, portName, 9600); //set up your port to listen to the serial port
 
-  table.addColumn("id"); //This column stores a unique identifier for each record. We will just count up from 0 - so your first reading will be ID 0, your second will be ID 1, etc.
 
-  //the following adds columns for time. You can also add milliseconds. See the Time/Date functions for Processing: https://www.processing.org/reference/
+  table.addColumn("id"); //This column stores a unique identifier for each record. 
+  //the following adds columns for time.
   table.addColumn("year");
   table.addColumn("month");
   table.addColumn("day");
@@ -57,7 +60,7 @@ myPort = new Serial(this, portName, 9600); //set up your port to listen to the s
   table.addColumn("minute");
   table.addColumn("second");
 
-  //the following are dummy columns for each data value. Add as many columns as you have data values. Customize the names as needed. Make sure they are in the same order as the order that Arduino is sending them!
+  //the following are dummy columns for each data value. 
   table.addColumn("Humidity");
   table.addColumn("Temperature (Celcius)");
 table.addColumn("Temperature (Fahrenheit)");
@@ -87,11 +90,12 @@ dataTable.addColumn("BOX 06 social time");
 }
 
 void serialEvent(Serial myPort){
- String val = myPort.readStringUntil('\n'); //The newline separator separates each Arduino loop. We will parse the data by each newline separator.
-  if (val!= null) { //We have a reading! Record it.
+  
+ String val = myPort.readStringUntil('\n'); //The newline separator separates each Arduino loop. 
+   if (val!= null) { 
     val = trim(val); //gets rid of any whitespace or Unicode nonbreakable space
-    println(val); //Optional, useful for debugging. If you see this, you know data is being sent. Delete if  you like.
-    float sensorVals[] = float(split(val, ',')); //parses the packet from Arduino and places the valeus into the sensorVals array. I am assuming floats. Change the data type to match the datatype coming from Arduino.
+    println(val); //Optional, useful for debugging. 
+    float sensorVals[] = float(split(val, ',')); //parses the packet from Arduino and places the valeus into the sensorVals 
 
     TableRow newRow = table.addRow(); //add a row for this new reading
     newRow.setInt("id", table.lastRowIndex());//record a unique identifier (the row's index)
@@ -126,14 +130,8 @@ readingCounter++; //optional, use if you'd like to write your file every numRead
     H = sensorVals[0];
     ////saves the table as a csv in the same folder as the sketch every numReadings.
     //if (readingCounter % numReadings ==0)//The % is a modulus, a math operator that signifies remainder after division. The if statement checks if readingCounter is a multiple of numReadings (the remainder of readingCounter/numReadings is 0)
-    String compareday = str(day());
-    if (currentday.equals(compareday) == false)
-    {
-      print(currentday);
-      print("  vs  ");
-      println(str(day()));
-     currentday = str(day());
-     fileName = str(year()) + str('_')+ str(month()) + str('_')+ str(day())  + str(minute())+ str('_')+ str(table.lastRowIndex()); //this filename is of the form year+month+day+readingCounter
+
+     fileName = str(year()) + str('_')+ str(month()) + str('_')+ str(day()); //this filename is of the form year+month+day+readingCounter
 
       String[] animals = new String[3];
 animals[0] = "/Users/glab/Documents/DATA/LOGS/";
@@ -141,11 +139,19 @@ animals[1] = fileName;
 animals[2] = ".csv";
 
 String filename = join(animals, "");
-      println(filename);
+      //println(filename);
 
-
+saveTable(table, filename); //Woo! save it to your computer. 
 
 // multi-day tracking
+    String compareday = str(day());
+    if (currentday.equals(compareday) == false)
+    {
+      print(currentday);
+      print("  vs  ");
+      println(str(day()));
+     currentday = str(day());
+//
     TableRow newRow2 = dataTable.addRow(); //add a row for this new reading
     newRow2.setInt("id", dataTable.lastRowIndex());//record a unique identifier (the row's index)
     int maxH = 0;
@@ -181,7 +187,7 @@ timer[0] = 0; timer[1] = 0; timer[2] = 0; timer[3] = 0; timer[4] = 0; timer[5] =
 
 
    //saveTable(table, "/Users/ARGO/Documents/DATA/new2.csv");
-      saveTable(table, filename); //Woo! save it to your computer. It is ready for all your spreadsheet dreams.
+
     saveTable(dataTable, "/Users/glab/Documents/DATA/LOGS/Aggregate_Data.csv");
  table.clearRows();
   }
@@ -192,8 +198,13 @@ void draw()
 {
 draw_ui();
   // Add Visualization here one day...
+GetBoxInfo();
 }
 
 void stop() {
+  // Clear the buffer, or available() will still be > 0
+      myPort.clear();
+      // Close the port
   myPort.stop();
+  super.stop();
 }

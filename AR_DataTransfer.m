@@ -18,6 +18,9 @@ function AR_DataTransfer(DIR)
 % is allways up-to-date.
 
 % *** Start in ABA_ACTIVE directory ***
+% Assume that ABA is a dir that contatins folders: BOX01 BOX02 BOX03 BOX04 BOX05 BOX06
+
+
 
 if nargin<1 | isempty(DIR), DIR=pwd; end
 % Start in ABA_ACTIVE directory, read text file, that dictates the experiment status.
