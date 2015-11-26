@@ -10,6 +10,11 @@ function AR_DataTransfer(DIR)
 %   Updated: 2015/11/22
 %   By: WALIII
 
+
+% To set this up in chron: http://hints.macworld.com/article.php?story=2001020700163714
+% Run with command : /Applications/MATLAB_R2015a.app/bin/matlab  -nodisplay -nosplash -r "AR_DataTransfer; quit"
+
+
 % Running note: This function will work imeadiately when run ( i.e. it will
 % first parse all data in the acquisition pipeline, then parse all
 % subsequent runs at midnight). This is done in case birds are switched out
@@ -38,6 +43,7 @@ disp('Processing Data...');
 fprintf(1,['Progress:  ' blanks(nblanks)]);
 
 for i=1:length(BOX_ID)
+  if STATUS(i) == 1;
 
 current_path = strcat(path,'/',BOX_ID{i});
 current_date =  datetime('today');
@@ -60,16 +66,18 @@ for ii = 1:length(mov_listing)
    movefile(filenames{ii},local_copy_path)
 end
 
+
 mkdir(destined_path);
  copyfile(local_copy_path,destined_path)
 disp('Parsing Data...');
  cd(destined_path);
         FS_AV_Parse();
-        if STATUS == 2
+        if STATUS(i) == 2
             % Automated template matching, and potentially ROI
             % extraction...
         end
 
     cd(path); % go back to the original folder in ARGO or calypso
+end
 end
 end
