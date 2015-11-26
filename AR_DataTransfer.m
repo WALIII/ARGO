@@ -29,7 +29,7 @@ function AR_DataTransfer(DIR)
 
 if nargin<1 | isempty(DIR), DIR=pwd; end
 % Start in ABA_ACTIVE directory, read text file, that dictates the experiment status.
-INPUT = tdfread('INPUT.txt','\t');
+INPUT = tdfread('INPUT.txt','\t'); % Assuimg that the .text file is in the path...
 BOX_ID = cellstr(INPUT.BOX_ID);
 STATUS = INPUT.STATUS;
 BIRD_ID = cellstr(INPUT.BIRD_ID);
@@ -49,9 +49,9 @@ current_path = strcat(path,'/',BOX_ID{i});
 current_date =  datetime('today');
 current_date = datestr(current_date);
 file_ending = strcat(BIRD_ID{i},'/',current_date)
-% put a copy in ABA_ACTIVE/BIRD_DATA
+% put a copy in a directory called: path.../BIRD_DATA
 local_copy_path = strcat(path,'/','BIRD_DATA','/',file_ending);
- % put processed data here...
+ % put processed data here... edit to actual path...
 destined_path = strcat('/Users/ARGO/Documents/DATA/PROC','/',file_ending);
 
 cd(current_path) % GO into box, copy .mov data into the current date
