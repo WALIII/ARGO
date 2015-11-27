@@ -7,35 +7,31 @@ function AR_DataTransfer(DIR)
 
 %   Created: 2015/11/21
 %   By: WALIII
-%   Updated: 2015/11/22
+%   Updated: 2015/11/27
 %   By: WALIII
 
 
-% To set this up in chron: http://hints.macworld.com/article.php?story=2001020700163714
-% Run with command : /Applications/MATLAB_R2015a.app/bin/matlab  -nodisplay -nosplash -r "AR_DataTransfer; quit"
+% To set this up in chron:  http://www.nncron.ru/help/EN/working/cron-format.htm
+% In terminal, edit in crontab with nano: env EDITOR=nano crontab -e
+% To run every day, at 10PM:
+% 0 21  * * * /Applications/MATLAB_R2015a.app/bin/matlab  -nodisplay -nosplash -r "AR_DataTransfer; quit"
+
+% Run once, with command :
+% /Applications/MATLAB_R2015a.app/bin/matlab  -nodisplay -nosplash -r "AR_DataTransfer; quit"
 
 
-% Running note: This function will work imeadiately when run ( i.e. it will
-% first parse all data in the acquisition pipeline, then parse all
-% subsequent runs at midnight). This is done in case birds are switched out
-% of cages within a day, such that there is no mixing birds in the analysis
-% later on. This shouldn't be an issue, if the BIRD IDs all match, and the text
-% is allways up-to-date.
-
-% *** Start in ABA_ACTIVE directory ***
-% Assume that ABA is a dir that contatins folders: BOX01 BOX02 BOX03 BOX04 BOX05 BOX06
-
-
-
+%% PATHS:
+START_DIR_ROOT = '/Users/ARGO/Documents/DATA/TEST'; %code will start in ABA_ACTIVE. Put Text File
+END_DIR_ROOT =  '/Users/ARGO/Documents/DATA/PROC';
+TEXT_DIR = '/Users/ARGO/Documents/DATA/TEST/INPUT.txt';
 if nargin<1 | isempty(DIR), DIR=pwd; end
-% Start in ABA_ACTIVE directory, read text file, that dictates the experiment status.
-INPUT = tdfread('INPUT.txt','\t'); % Assuimg that the .text file is in the path...
+
+%% Variables:
+INPUT = tdfread(TEXT_DIR,'\t'); % Assuimg that the .text file is in the path...
 BOX_ID = cellstr(INPUT.BOX_ID);
 STATUS = INPUT.STATUS;
 BIRD_ID = cellstr(INPUT.BIRD_ID);
 
-
-path = pwd; % code will start in ABA_ACTIVE
 
 disp('Processing Data...');
 
@@ -45,14 +41,14 @@ fprintf(1,['Progress:  ' blanks(nblanks)]);
 for i=1:length(BOX_ID)
   if STATUS(i) == 1;
 
-current_path = strcat(path,'/',BOX_ID{i});
+current_path = strcat(START_DIR_ROOT,'/',BOX_ID{i});
 current_date =  datetime('today');
 current_date = datestr(current_date);
 file_ending = strcat(BIRD_ID{i},'/',current_date)
 % put a copy in a directory called: path.../BIRD_DATA
-local_copy_path = strcat(path,'/','BIRD_DATA','/',file_ending);
+local_copy_path = strcat(START_DIR_ROOT,'/','BIRD_DATA','/',file_ending);
  % put processed data here... edit to actual path...
-destined_path = strcat('/Users/ARGO/Documents/DATA/PROC','/',file_ending);
+destined_path = strcat(END_DIR_ROOT,'/',file_ending);
 
 cd(current_path) % GO into box, copy .mov data into the current date
 
@@ -77,7 +73,7 @@ disp('Parsing Data...');
             % extraction...
         end
 
-    cd(path); % go back to the original folder in ARGO or calypso
+    cd(START_DIR_ROOT); % go back to the original folder in ARGO or calypso
 end
 end
 end
