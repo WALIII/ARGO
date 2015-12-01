@@ -14,8 +14,10 @@ function AR_DataTransfer(DIR)
 % To set this up in chron:  http://www.nncron.ru/help/EN/working/cron-format.htm
 % In terminal, edit in crontab with nano: env EDITOR=nano crontab -e
 % To run every day, at 10PM:
-% 0 21  * * * /Applications/MATLAB_R2015a.app/bin/matlab  -nodisplay -nosplash -r "AR_DataTransfer; quit"
+% 0 21  * * * /Applications/MATLAB_R2015a.app/bin/matlab  -nodisplay -nosplash -r "AR_DataTransfer; quit"  >> ~/.stupid.log 2>&1
 
+
+% to monitor on termina:  tail -f ~/.stupid.log
 % Run once, with command :
 % /Applications/MATLAB_R2015a.app/bin/matlab  -nodisplay -nosplash -r "AR_DataTransfer; quit"
 
