@@ -14,18 +14,18 @@ function AR_DataTransfer(DIR)
 % To set this up in chron:  http://www.nncron.ru/help/EN/working/cron-format.htm
 % In terminal, edit in crontab with nano: env EDITOR=nano crontab -e
 % To run every day, at 10PM:
-% 0 21  * * * /Applications/MATLAB_R2015a.app/bin/matlab  -nodisplay -nosplash -r "AR_DataTransfer; quit"  >> ~/.stupid.log 2>&1
+% 0 21  * * * /Applications/MATLAB_R2015a.app/bin/matlab  -nodisplay -nosplash -r "AR_DataTransfer; quit"  >> ~/.MATLAB_logfile.log 2>&1
 
 
-% to monitor on termina:  tail -f ~/.stupid.log
+% to monitor on terminal:  tail -f ~/.MATLAB_logfile.log
 % Run once, with command :
 % /Applications/MATLAB_R2015a.app/bin/matlab  -nodisplay -nosplash -r "AR_DataTransfer; quit"
 
 
 %% PATHS:
-START_DIR_ROOT = '/Users/ARGO/Documents/DATA/TEST'; %code will start in ABA_ACTIVE. Put Text File
-END_DIR_ROOT =  '/Users/ARGO/Documents/DATA/PROC';
-TEXT_DIR = '/Users/ARGO/Documents/DATA/TEST/INPUT.txt';
+START_DIR_ROOT = '/Volumes/ARGO_DATA'; %code will start in ABA_ACTIVE. Put Text File
+END_DIR_ROOT =  '/Users/glab/Documents/DATA/PROC';
+TEXT_DIR = '/Users/glab/Desktop/INPUT.txt';
 if nargin<1 | isempty(DIR), DIR=pwd; end
 
 %% Variables:
@@ -37,8 +37,8 @@ BIRD_ID = cellstr(INPUT.BIRD_ID);
 
 disp('Processing Data...');
 
-[nblanks formatstring]=fb_progressbar(100);
-fprintf(1,['Progress:  ' blanks(nblanks)]);
+% [nblanks formatstring]=fb_progressbar(100);
+% fprintf(1,['Progress:  ' blanks(nblanks)]);
 
 for i=1:length(BOX_ID)
   if STATUS(i) == 1;
