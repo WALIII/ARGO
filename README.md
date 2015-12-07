@@ -68,3 +68,11 @@ To run every day, at 10PM, insert this into the crontab:
 ```
  0 21  * * * /Applications/MATLAB_R2015a.app/bin/matlab  -nodisplay -nosplash -r "AR_DataTransfer; quit"  >> ~/.MATLAB_logfile.log 2>&1
 ```
+
+To monitor the output of this function, in a new terminal window:
+
+```
+tail -f ~/.MATLAB_logfile.log
+```
+
+This will read a ever-increasing .log file, which has the output of the matlab script directed to it. Good for troubleshooting as well.
