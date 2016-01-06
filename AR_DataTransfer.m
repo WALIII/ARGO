@@ -24,6 +24,7 @@ function AR_DataTransfer(DIR)
 
 %% PATHS:
 START_DIR_ROOT = '/Volumes/ARGO_DATA'; %code will start in ABA_ACTIVE. Put Text File
+START_DIR_ROOT2 = '/Volumes/CALYPSO_DATA';
 END_DIR_ROOT =  '/Users/glab/Documents/DATA/PROC';
 TEXT_DIR = '/Users/glab/Desktop/INPUT.txt';
 if nargin<1 | isempty(DIR), DIR=pwd; end
@@ -42,6 +43,12 @@ disp('Processing Data...');
 
 for i=1:length(BOX_ID)
   if STATUS(i) == 1;
+    if i<5
+      START_DIR_ROOT = START_DIR_ROOT;
+    else
+      START_DIR_ROOT = START_DIR_ROOT2;
+    end
+
 
 current_path = strcat(START_DIR_ROOT,'/',BOX_ID{i});
 current_date =  datetime('today');

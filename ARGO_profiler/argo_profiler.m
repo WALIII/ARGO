@@ -1,5 +1,5 @@
 
-function ARGO_profiler
+function [ BOX_ID ] = argo_profiler()
   % ARGO_profiler
 
   % Get tracking data from birds in all active Boxes, and put it in a text file
@@ -25,8 +25,7 @@ function ARGO_profiler
 
 
 
-
-% Get Info
+% Get Info/Status from text file...
 TEXT_DIR = '/Users/ARGO/Documents/MATLAB/ARGO/ARGO_profiler/INPUT.txt';
 INPUT = tdfread(TEXT_DIR,'\t'); % Assuimg that the .text file is in the path...
 BOX_ID = cellstr(INPUT.BOX_ID);
@@ -36,7 +35,7 @@ ENTRY_ID = cellstr(INPUT.ENTRY);
 
 
 
-% Write Text File
+% Write Text Files for each box/bird
 for i=1:length(BOX_ID)
   if STATUS(i) == 1;
     filename = char(strcat(BOX_ID(i),'_LOGFILE','.txt'));
