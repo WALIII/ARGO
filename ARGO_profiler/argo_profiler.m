@@ -1,5 +1,31 @@
 
 function ARGO_profiler
+  % ARGO_profiler
+
+  % Get tracking data from birds in all active Boxes, and put it in a text file
+  % hosted on Drive, readable by a QR code. This replaces daily task sheets
+  % with a QR code.
+
+  %   Created: 2015/12/30
+  %   By: WALIII
+  %   Updated: 2016/01/06
+  %   By: WALIII
+
+
+  % To set this up in chron:  http://www.nncron.ru/help/EN/working/cron-format.htm
+  % In terminal, edit in crontab with nano: env EDITOR=nano crontab -e
+  % To run every day, at 10PM:
+  % 0 21  * * * /Applications/MATLAB_R2015a.app/bin/matlab  -nodisplay -nosplash -r "ARGO_profiler; quit"  >> ~/.MATLAB_logfile.log 2>&1
+
+
+  % to monitor on terminal:  tail -f ~/.MATLAB_logfile.log
+  % Run once, with command :
+  % /Applications/MATLAB_R2015a.app/bin/matlab  -nodisplay -nosplash -r "ARGO_profiler; quit"
+
+
+
+
+
 % Get Info
 TEXT_DIR = '/Users/ARGO/Documents/MATLAB/ARGO/ARGO_profiler/INPUT.txt';
 INPUT = tdfread(TEXT_DIR,'\t'); % Assuimg that the .text file is in the path...
