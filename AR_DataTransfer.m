@@ -24,7 +24,7 @@ function AR_DataTransfer(DIR)
 
 %% PATHS:
 START_DIR_ROOT = '/Volumes/ARGO_DATA'; %code will start in ABA_ACTIVE. Put Text File
-START_DIR_ROOT2 = '/Volumes/CALYPSO_DATA';
+START_DIR_ROOT2 = '/Volumes/AEOLUS_DATA';
 END_DIR_ROOT =  '/Users/glab/Documents/DATA/PROC';
 TEXT_DIR = '/Users/glab/Desktop/INPUT.txt';
 if nargin<1 | isempty(DIR), DIR=pwd; end
@@ -43,7 +43,7 @@ disp('Processing Data...');
 
 for i=1:length(BOX_ID)
   if STATUS(i) == 1; | STATUS(i) == 2;% if status is set to 1. 'extract' or 2. 'extract and process'
-    if i<5 % For the first 4 boxes ( from argo)
+    if i<4 % For the first 3 boxes ( from argo)
       START_DIR_ROOT = START_DIR_ROOT;
     else
       START_DIR_ROOT = START_DIR_ROOT2;
