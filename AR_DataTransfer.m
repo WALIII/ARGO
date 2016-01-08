@@ -7,7 +7,7 @@ function AR_DataTransfer(DIR)
 
 %   Created: 2015/11/21
 %   By: WALIII
-%   Updated: 2015/11/27
+%   Updated: 2015/01/08
 %   By: WALIII
 
 
