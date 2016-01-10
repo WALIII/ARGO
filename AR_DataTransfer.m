@@ -35,6 +35,10 @@ BOX_ID = cellstr(INPUT.BOX_ID);
 STATUS = INPUT.STATUS;
 BIRD_ID = cellstr(INPUT.BIRD_ID);
 
+%% % get date, only once!
+current_date =  datetime('today');
+current_date = datestr(current_date);
+
 
 disp('Processing Data...');
 
@@ -51,8 +55,6 @@ for i=1:length(BOX_ID)
 
 
 current_path = strcat(START_DIR_ROOT,'/',BOX_ID{i});
-current_date =  datetime('today');
-current_date = datestr(current_date);
 file_ending = strcat(BIRD_ID{i},'/',current_date)
 % put a copy in a directory called: path.../BIRD_DATA
 local_copy_path = strcat(START_DIR_ROOT,'/','BIRD_DATA','/',file_ending);
@@ -76,11 +78,16 @@ mkdir(destined_path);
  copyfile(local_copy_path,destined_path)
 disp('Parsing Data...');
  cd(destined_path);
-        FS_AV_Parse();
-        if STATUS(i) == 2
-            % Automated template matching, and potentially ROI
-            % extraction...
-        end
+
+    try
+            FS_AV_Parse();
+              if STATUS(i) == 2
+                  % Automated template matching, and potentially ROI
+                    % extraction...
+              end
+    catch
+        warning('Problem using function FS_AV_Parse.  Skipping to next BOX');
+    end
 
     cd(START_DIR_ROOT); % go back to the original folder in ARGO or calypso
 end
