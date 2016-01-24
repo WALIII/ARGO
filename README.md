@@ -38,6 +38,10 @@ To keep track of active data collection at the bench, or during analysis, a brie
 
 ![ScreenShot](LoggerExample.png)
 
+And an example of Song tracking, which counts the number of .mov files in each directory.
+
+![ScreenShot](Hist.png)
+
 
 Example of console on desktop:
 ![ScreenShot](im3.png)
