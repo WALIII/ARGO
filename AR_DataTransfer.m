@@ -25,7 +25,7 @@ function AR_DataTransfer(DIR)
 %% PATHS:
 START_DIR_ROOT = '/Volumes/ARGO_DATA'; %code will start in ABA_ACTIVE. Put Text File
 START_DIR_ROOT2 = '/Volumes/AEOLUS_DATA';
-END_DIR_ROOT =  '/Users/glab/Documents/DATA/PROC';
+END_DIR_ROOT =  '/Volumes/WALIII_DATA01/DATA/PROC';
 TEXT_DIR = '/Users/glab/Desktop/INPUT.txt';
 if nargin<1 | isempty(DIR), DIR=pwd; end
 
