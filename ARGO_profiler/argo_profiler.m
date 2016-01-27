@@ -8,7 +8,7 @@ function [ BOX_ID ] = argo_profiler()
 
   %   Created: 2015/12/30
   %   By: WALIII
-  %   Updated: 2016/01/06
+  %   Updated: 2016/01/24
   %   By: WALIII
 
 
@@ -49,6 +49,8 @@ for i=1:length(BOX_ID)
     ENTRY = char(strcat('ENTRY DATE:', ENTRY_ID(i)));
     LINE = 'DATE	       	HEALTH CHECK	        	SOCIAL TIME';
     DATA = datestr(datetime('today'));
+    
+    % if
 % Write Data:
 fprintf(fileID,'%s\n',BOXES);
 fprintf(fileID,'%s\n',BIRDS);
@@ -57,6 +59,15 @@ fprintf(fileID,'%s\n',COMMUTATORS);
 fprintf(fileID,'%s\n',space);
 fprintf(fileID,'%s\n',LINE);
 fprintf(fileID,'%s\n',DATA);
+
+
+
+
+
 end
 end
+
+% END
+csvwrite(CurrentBox,M) % write who is on the box now, so that we can track when birds change 
+
 end
