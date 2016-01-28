@@ -49,8 +49,8 @@ for i=1:length(BOX_ID)
     ENTRY = char(strcat('ENTRY DATE:', ENTRY_ID(i)));
     LINE = 'DATE	       	HEALTH CHECK	        	SOCIAL TIME';
     DATA = datestr(datetime('today'));
-    
-    % if
+
+     
 % Write Data:
 fprintf(fileID,'%s\n',BOXES);
 fprintf(fileID,'%s\n',BIRDS);
@@ -68,6 +68,6 @@ end
 end
 
 % END
-csvwrite(CurrentBox,M) % write who is on the box now, so that we can track when birds change 
+csvwrite(CurrentBox,M) % write who is on the box now, so that we can track when birds change
 
 end
