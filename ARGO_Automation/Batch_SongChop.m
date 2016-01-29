@@ -18,8 +18,9 @@ dirFlags = [files.isdir];
 % Extract only those that are directories.
 subFolders = files(dirFlags);
 % Print folder names to command window.
-for k = 1 : length(subFolders)
+for k = 3 : length(subFolders)
 	zftftb_song_chop(subFolders(k).name);
+    cd(subFolders(k).name);
     delete('*.wav')
     cd(here);
     disp(k)
