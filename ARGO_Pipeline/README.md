@@ -30,24 +30,13 @@ In brief:
 
 The entire directory, from PROC forward, will transfer to data processing computers. The active directory is the mat folder. In the BIRD-ID dir, a TEMPLATE file is stored, that is the BOS recored through the head-mounted mic
 
-Within the 'mat' folder, an additional folder, 'extraction' will be created.
+Within the 'mat' folder, an additional folder, 'extraction' will be created, where song-aligned .mat files will be created. A text alert warns the user to manually cut the song cluster.
 
 
 
 
-In terminal, edit in crontab with nano:
-```
-$  env EDITOR=nano crontab -e
- ```
-To run every day, at 10PM, insert this into the crontab:
-```
- 0 21  * * * /Applications/MATLAB_R2015a.app/bin/matlab  -nodisplay -nosplash -r "AR_DataTransfer; quit"  >> ~/.MATLAB_logfile.log 2>&1
-```
-
-To monitor the output of this function, in a new terminal window:
-
-```
-tail -f ~/.MATLAB_logfile.log
-```
-
-This will read a ever-increasing .log file, which has the output of the matlab script directed to it. Good for troubleshooting as well.
+Functions and descriptions
+AR_Batch_Dff(BIRD_ID) - Run Df/f on all days of this bird
+AR_Template() - Pick a template to run batch template processing on.
+AR_TemplateMatch(BIRD_ID) - align to song, using stored template
+AR_ROI_Extract(BIRD_ID, varargin) - Extract ROIs
