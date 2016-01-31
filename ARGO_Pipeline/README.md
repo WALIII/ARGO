@@ -35,8 +35,10 @@ Within the 'mat' folder, an additional folder, 'extraction' will be created, whe
 
 
 
-Functions and descriptions
-AR_Batch_Dff(BIRD_ID) - Run Df/f on all days of this bird
-AR_Template() - Pick a template to run batch template processing on.
+#### Functions and descriptions
+AR_DATA_UPDATE() - Copy new data from pre-processing computer to MIDDLE-PROCESSING computer. Also Backs up raw data.
+AR_Batch_Dff(BIRD_ID, varargin) - Create Df/f on all days of this bird. Can output tif/avi or to DS.
+AR_TemplateSelect() - Pick a template to run batch template processing on. Run in dir.
 AR_TemplateMatch(BIRD_ID) - align to song, using stored template
-AR_ROI_Extract(BIRD_ID, varargin) - Extract ROIs
+AR_ROI_Extraction_A(BIRD_ID, varargin) - Extract ROIs (agnostically)
+AR_ROI_Extraction_B(BIRD_ID, varargin) - Extract ROIs (gnostically)
