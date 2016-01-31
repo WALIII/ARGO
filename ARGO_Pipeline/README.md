@@ -16,12 +16,18 @@ Data exists in Circe in this format:
 
 In brief:
 1. (OPTIONAL) down-sampled Df/f (DS avi) videos of the unaligned data will be created.
+
 2. the data for each bird will be aligned to song
+
 3. ROI maps will be automatically determined
+
 4. 'agnostic' ROI extraction will occur. This requires within-day image alignment
+
 5. 'gnostic' ROI extraction will occur for n-(x) days, determined by extraction parameters read in a text file, merging highly overlapping ROIs. This requires within and across day image registration.
+
 6. full resolution Df/f MTIFF for analysis in THUNDER
-6. Reorganization: All ROI data will be stored in a separate directory, by BIRD_ID, for easy processing
+
+7. Reorganization: All ROI data will be stored in a separate directory, by BIRD_ID, for easy processing
 
 
 
