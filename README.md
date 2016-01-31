@@ -36,7 +36,7 @@ Tracking BIRD ID in each active box, and Temperature/Humidity through out the co
 #### Remote Console
 To keep track of active data collection at the bench, or during analysis, a brief history of Temperature, Humidity and # of songs collected can be monitored in real time via a constantly uploaded/hosted image, that is accessible via a QR code on each box, or with the proper hyerlink. This image refreshes everyday, and can be saved for each day for reference (raw data is stored in .csv described above)
 
-![ScreenShot](https://github.com/waliii/ARGO/imgs/Hist.png)
+![ScreenShot](../imgs/Hist.png?raw=true)
 
 And an example of Song tracking, which counts the number of .mov files in each directory.
 
