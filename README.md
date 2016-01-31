@@ -20,7 +20,7 @@ CIRCE outputs 2 .csv files:
 
 #### experiment status
 experiment status is defined by a .tsv text file, and is used to get bird's IDs that are in each BOX. This can be changed on the fly, and it constantly updates all monitoring and logging programs.
-![ScreenShot](im2.png)
+![ScreenShot](imgs/im2.png)
 
 ### MONITOR DATA
 
@@ -28,23 +28,22 @@ experiment status is defined by a .tsv text file, and is used to get bird's IDs 
 At the rig, there is a console/badge that tacks the box door status, as well as the current T/H. This badge notifies the user of what boxes are actively being monitored.  
 
 Tracking the Current Box Stats, Social Time and current Temperature/Humidity:
-![ScreenShot](Screen01.png)
+![ScreenShot](imgs/im5.png)
 
 Tracking BIRD ID in each active box, and Temperature/Humidity through out the course of the day:
-![ScreenShot](image2.png)
+![ScreenShot](imgs/im4.png)
 
 #### Remote Console
 To keep track of active data collection at the bench, or during analysis, a brief history of Temperature, Humidity and # of songs collected can be monitored in real time via a constantly uploaded/hosted image, that is accessible via a QR code on each box, or with the proper hyerlink. This image refreshes everyday, and can be saved for each day for reference (raw data is stored in .csv described above)
 
-![ScreenShot](../imgs/Hist.png?raw=true)
+![ScreenShot](imgs/im6.png)
 
 And an example of Song tracking, which counts the number of .mov files in each directory.
 
-![ScreenShot](https://github.com/WALIII/ARGO/imgs/Hist.png)
 
 
 Example of console on desktop:
-![ScreenShot](im3.png)
+![ScreenShot](imgs/im3.png)
 
 
 
@@ -52,9 +51,10 @@ Example of console on desktop:
 
 
 
-### STAGE TWO: DATA PARSING
+### STAGE TWO: DATA PARSING/ PRE-PROCESSING
 
- CIRCE runs a MATLAB script once per day. This script can be run manuall, in Matlab:
+ CIRCE runs a MATLAB script once per day. This script can be run manually, in Matlab:
+
 ```
 >> AR_DataTransfer
 ```
