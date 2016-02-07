@@ -3,13 +3,18 @@ ARGO is the behavioral imaging rig in the Gardner Lab, that contains 12 boxes fo
 
 This is the documentation for the Automated 'middle analysis' portion, and modules of the analysis pipeline. This will typically not be "cron'd" but reserves the ability to be.
 
+![ScreenShot](imgs/Automation01.png)
 
 #### BACKGROUND (preprocessing on other computers)
+![ScreenShot](imgs/Automation01.png)
 
 Data exists in Circe in this format:
 
     DATA--> PROC--> BIRD_ID--> DATE--> RAW-->mat
-                                `--> gif
+                                |--> gif
+
+The specifications of the computers in the workflow are as follows:
+![ScreenShot](imgs/Automation02.png)
 
 ## MIDDLE-PROCESSING OVERVIEW
 
