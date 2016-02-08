@@ -25,7 +25,9 @@ function [ BOX_ID ] = argo_profiler()
 
 
 
-% Get Info/Status from text file...
+
+
+% Get Temp, Humidity, and social time from text file...
 TEXT_DIR = '/Users/ARGO/Documents/MATLAB/ARGO/ARGO_profiler/INPUT.txt';
 INPUT = tdfread(TEXT_DIR,'\t'); % Assuimg that the .text file is in the path...
 BOX_ID = cellstr(INPUT.BOX_ID);
@@ -33,6 +35,16 @@ STATUS = INPUT.STATUS;
 BIRD_ID = cellstr(INPUT.BIRD_ID);
 ENTRY_ID = cellstr(INPUT.ENTRY);
 
+
+% Get Info/Status from text file...
+% Make Date matrix...
+
+TEXT_DIR = '/Users/ARGO/Documents/MATLAB/ARGO/ARGO_profiler/LOGs/INPUT.txt';
+INPUT = tdfread(TEXT_DIR,'\t'); % Assuimg that the .text file is in the path...
+BOX_ID = cellstr(INPUT.BOX_ID);
+STATUS = INPUT.STATUS;
+BIRD_ID = cellstr(INPUT.BIRD_ID);
+ENTRY_ID = cellstr(INPUT.ENTRY);
 
 
 % Write Text Files for each box/bird
@@ -68,6 +80,6 @@ end
 end
 
 % END
-csvwrite(CurrentBox,M) % write who is on the box now, so that we can track when birds change
+%csvwrite(CurrentBox,M) % write who is on the box now, so that we can track when birds change
 
 end

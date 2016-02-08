@@ -3,18 +3,23 @@ ARGO is the behavioral imaging rig in the Gardner Lab, that contains 12 boxes fo
 
 ## STAGE ONE: DATA COLLECTION
 
-### Collect data from 3 acquisition computers, plus one support computer
-  ARGO (MAC Mini): BOX01- BOX04
+### Collect data from 4 acquisition computers, plus two support computers
+  ARGO (MAC Mini): BOX01- BOX03
 
-  CALYPSO (MAC Mini): BOX05-BOX08
+  AEOLUS (MAC Mini): BOX04-BOX06
 
-  CALLIDICE (MAC Mini): BOX09-BOX12
+  CALLIDICE (MAC Mini): BOX07-BOX09
 
-  CIRCE (MAC pro): Support, data staging and distribution.
+  PROMETHEUS (MAC Mini): BOX010-BOX12
+
+  CALYPSO (MAC pro)Support, data staging and distribution.
+
+  CIRCE (MAC pro): Data processing, task management
+
 
 
 ### Temperature, Humidity, Social Time Tracker
-CIRCE outputs 2 .csv files:
+CALYPSO outputs 2 .csv files:
 1. One .csv per day that includes Temperature, Humidity as and the BOX door status for each 'active' BOX in the rig, sampled and timestamped every 2 seconds.
 2. A .csv called 'Aggregate_Data' that includes the Max/Min Temperature, Humidity, as well as social time for each box, and what bird is in each box.
 
