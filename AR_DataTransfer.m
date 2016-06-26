@@ -64,13 +64,15 @@ destined_path = strcat(END_DIR_ROOT,'/',file_ending);
 cd(current_path) % GO into box, copy .mov data into the current date
 
  mov_listing=dir(fullfile(pwd,'*.mov')); % Get all .mov files in directory
+ csv_listing = dir(fullfile(pwd,'*.csv')); % Get all .mov files in directory
  mov_listing={mov_listing(:).name};
- filenames=mov_listing;
+
 
 disp('Moving Files...');
 mkdir(local_copy_path);
 for ii = 1:length(mov_listing)
-   movefile(filenames{ii},local_copy_path)
+   movefile(mov_listing{ii},local_copy_path)
+   movefile(csv_listing{ii},local_copy_path)
 end
 
 
@@ -87,9 +89,14 @@ disp('Parsing Data...');
               end
     catch
         warning('Problem using function FS_AV_Parse.  Skipping to next BOX');
+        % email that there was a problem
+        send_text_message('617-529-0762','Verizon', ...
+                 'Batch Error','An error occured with data processing in ARGO')
     end
 
     cd(START_DIR_ROOT); % go back to the original folder in ARGO or calypso
 end
 end
+send_text_message('617-529-0762','Verizon', ...
+         'Batch Complete ','ARGO has successfully transfered all files')
 end
