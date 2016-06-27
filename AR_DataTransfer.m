@@ -2,12 +2,12 @@
 function AR_DataTransfer(DIR)
 % AR_DataTransfer
 
-% Transfer Data from FreedomScopes every evening at midnight, and run
+% Transfer Data from FreedomScope temp repository every evening at midnight, and run
 % analysis on them
 
 %   Created: 2015/11/21
 %   By: WALIII
-%   Updated: 2015/01/08
+%   Updated: 2015/06/25
 %   By: WALIII
 
 
@@ -66,7 +66,7 @@ cd(current_path) % GO into box, copy .mov data into the current date
  mov_listing=dir(fullfile(pwd,'*.mov')); % Get all .mov files in directory
  csv_listing = dir(fullfile(pwd,'*.csv')); % Get all .mov files in directory
  mov_listing={mov_listing(:).name};
-
+csv_listing = {csv_listing(:).name};
 
 disp('Moving Files...');
 mkdir(local_copy_path);
