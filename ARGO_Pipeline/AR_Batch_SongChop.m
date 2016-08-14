@@ -1,10 +1,12 @@
-function AR_Batch_SongChop(DIR, varargin)
+function AR_Batch_SongChop(DIR)
 
 % run thorough directory and song chop all the .wav files
+% This script should be run in the directory that contains folders for each
+% bird.
+
+
 % WALIII
 % 01.28.16
-
-
 
 
 
@@ -19,7 +21,8 @@ dirFlags = [files.isdir];
 subFolders = files(dirFlags);
 % Print folder names to command window.
 for k = 3 : length(subFolders)
-	zftftb_song_chop(subFolders(k).name);
+    G = strcat(subFolders(k).name,'/wav');
+	zftftb_song_chop(G);
     cd(subFolders(k).name);
     delete('*.wav')
     cd(here);
