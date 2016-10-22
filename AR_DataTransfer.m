@@ -66,14 +66,17 @@ cd(current_path) % GO into box, copy .mov data into the current date
  mov_listing=dir(fullfile(pwd,'*.mov')); % Get all .mov files in directory
  csv_listing = dir(fullfile(pwd,'*.csv')); % Get all .mov files in directory
  mov_listing={mov_listing(:).name};
-csv_listing = {csv_listing(:).name};
+ csv_listing = {csv_listing(:).name};
 
 disp('Moving Files...');
 mkdir(local_copy_path);
+
 for ii = 1:length(mov_listing)
    movefile(mov_listing{ii},local_copy_path)
    movefile(csv_listing{ii},local_copy_path)
 end
+
+
 
 
 mkdir(destined_path);
