@@ -85,7 +85,7 @@ disp('Parsing Data...');
  cd(destined_path);
 
     try
-            FS_AV_Parse();
+            %FS_AV_Parse();
               if STATUS(i) == 1;
                   % Automated template matching, and potentially ROI % extraction...
                   try
