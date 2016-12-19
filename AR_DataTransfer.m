@@ -72,8 +72,9 @@ disp('Moving Files...');
 mkdir(local_copy_path);
 
 for ii = 1:length(mov_listing)
-   movefile(mov_listing{ii},local_copy_path)
-   movefile(csv_listing{ii},local_copy_path)
+   %movefile(mov_listing{ii},local_copy_path)
+   %movefile(csv_listing{ii},local_copy_path)
+   disp('Skipping Moving Files for troubleshoting...');
 end
 
 
