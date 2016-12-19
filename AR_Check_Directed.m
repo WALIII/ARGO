@@ -25,7 +25,7 @@ current_date = datestr(current_date,formatOut);
 CSVfile = [Loc,current_date,'.csv']
 G = dlmread(CSVfile,',',1,0);
 
-G = dlmread('2016_12_2.csv',',',1,0);
+% G = dlmread('2016_12_2.csv',',',1,0);
 
 % for i =
 % idx = find(G(:,14) == 0);
