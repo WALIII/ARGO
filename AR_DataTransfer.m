@@ -7,7 +7,7 @@ function AR_DataTransfer(DIR)
 
 %   Created: 2015/11/21
 %   By: WALIII
-%   Updated: 2015/06/25
+%   Updated: 2016/12/18
 %   By: WALIII
 
 
@@ -46,7 +46,7 @@ disp('Processing Data...');
 % fprintf(1,['Progress:  ' blanks(nblanks)]);
 
 for i=1:length(BOX_ID)
-  if STATUS(i) == 1; %| STATUS(i) == 2;% if status is set to 1. 'extract' or 2. 'extract and process'
+  if STATUS(i) == 1; | STATUS(i) == 2;% if status is set to 1. 'extract' or 2. 'extract and process'
     if i<4 % For the first 3 boxes ( from argo)
       START_DIR_ROOT = START_DIR_ROOT;
     else
@@ -86,9 +86,14 @@ disp('Parsing Data...');
 
     try
             FS_AV_Parse();
-              if STATUS(i) == 2
-                  % Automated template matching, and potentially ROI
-                    % extraction...
+              if STATUS(i) == 2;
+                  % Automated template matching, and potentially ROI % extraction...
+                  try
+                  AR_Check_Directed(pwd,BOX_ID{i},BIRD_ID{i})
+                catch
+                  send_text_message('617-529-0762','Verizon', ...
+                           'Dir/Undir','An error occured in parsing Dir/UnDir data in ARGO')
+                  end
               end
     catch
         warning('Problem using function FS_AV_Parse.  Skipping to next BOX');
