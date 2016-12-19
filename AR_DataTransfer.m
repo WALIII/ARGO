@@ -86,7 +86,7 @@ disp('Parsing Data...');
 
     try
             FS_AV_Parse();
-              if STATUS(i) == 2;
+              if STATUS(i) == 1;
                   % Automated template matching, and potentially ROI % extraction...
                   try
                   AR_Check_Directed(pwd,BOX_ID{i},BIRD_ID{i})
