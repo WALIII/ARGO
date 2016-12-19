@@ -98,7 +98,7 @@ ylim([-.2 1.2]);
 hold on;
 plot(mov_Tclose(1,:),1-mov_Tclose(2,:),'*');
 dateFormat = 11;
-title(['Summary for ',BIRDID, ' (',BOX,') ','on ','filenames{1}(1:10)])
+title(['Summary for ',BIRDID, ' (',BOX,') ','on ',filenames{1}(1:10)]);
 datetick('x','HHPM')
 
 set(gca,'YTickLabel',{'BOX CLOSED' 'BOX OPEN'},'YTick',[0 1])
