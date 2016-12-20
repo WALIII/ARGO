@@ -15,14 +15,14 @@ function AR_Check_Directed(DIR,BOX,BIRDID)
 
 
 % Check CSV to see the aggregate when the box was open or closed
-Loc = '/Volumes/glab/Documents/DATA' % where the CSVs are located
+Loc = '/Users/glab/Documents/DATA/LOGS' % where the CSVs are located
 
 % Get the date
-formatOut = 'yyyy-mm-dd';
+formatOut = 'yyyy_mm_dd';
 current_date =  datetime('today');
 current_date = datestr(current_date,formatOut);
 
-CSVfile = [Loc,current_date,'.csv']
+CSVfile = [Loc,'/',current_date,'.csv']
 G = dlmread(CSVfile,',',1,0);
 
 % G = dlmread('2016_12_2.csv',',',1,0);
@@ -50,7 +50,7 @@ filenames=mov_listing;
 
 % collect times in the CSV
 TIMES_B(:,1) =  datenum(G(:,2),G(:,3),G(:,4),G(:,5),G(:,6),G(:,7));
-TIMES_B(:,2) =  G(:,10+BOX); % index into the proper BOX
+TIMES_B(:,2) =  G(:,10+str2num(BOX(4:5))); % index into the proper BOX
 
 
 
