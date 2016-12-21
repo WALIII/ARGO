@@ -83,6 +83,7 @@ for i = 1:length(mov_listing);
   end
 end
 
+if exist('directed') ==1;
 save('context_index','directed','undirected');
 
 % Get the difference in song files Created
@@ -111,7 +112,7 @@ set(gca,'YAxisLocation','right','XTickLabel',{'','Directed' 'UnDirected'},'XTick
 
 saveas(f,'figure.png');
 
-
+end
 
 % move files into new directories
 
