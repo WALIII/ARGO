@@ -22,6 +22,19 @@ formatOut = 'yyyy_mm_dd';
 current_date =  datetime('today');
 current_date = datestr(current_date,formatOut);
 
+% format to fit processing's output
+if current_date(6) == '0'
+    current_date(6) = [];
+    if current_date(8)== '0'
+        current_date(8) = [];
+    end
+else
+    if current_date(8)== '0'
+        current_date(8) = [];
+    end
+end
+        
+
 CSVfile = [Loc,'/',current_date,'.csv']
 G = dlmread(CSVfile,',',1,0);
 
@@ -55,12 +68,18 @@ TIMES_B(:,2) =  G(:,10+str2num(BOX(4:5))); % index into the proper BOX
 
 
 for ii = 1: length(mov_listing);
+    try
 mov_T(:,ii) = datenum(str2num(filenames{ii}(1:4)),str2num(filenames{ii}(6:7)),str2num(filenames{ii}(9:10)),str2num(filenames{ii}(12:13)),str2num(filenames{ii}(15:16)),str2num(filenames{ii}(18:19)));
 % Find closest timepoint in CSV
 tmp = abs(TIMES_B(:,1)-mov_T(:,ii));
 [idx idx] = min(tmp); %index of closest value
 mov_Tclose(1,ii) = TIMES_B((idx),1); %closest value
 mov_Tclose(2,ii) =  TIMES_B(find(TIMES_B(:,1) == mov_Tclose(1,ii)),2);
+    catch
+    disp('Bad filename');
+    filenames(ii) = [];
+continue
+    end
 end
 
 
@@ -68,7 +87,7 @@ end
 counter1 = 1;
 counter2 = 1;
 counter3 = 1;
-for i = 1:length(mov_listing);
+for i = 1:size(filenames,2);
   if mov_Tclose(2,i) ==1; % box is closed
     undirected{counter1} = mov_listing{i};
     counter1 = counter1+1;

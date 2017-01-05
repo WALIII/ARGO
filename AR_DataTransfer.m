@@ -72,16 +72,16 @@ disp('Moving Files...');
 mkdir(local_copy_path);
 
 for ii = 1:length(mov_listing)
-   movefile(mov_listing{ii},local_copy_path)
-   movefile(csv_listing{ii},local_copy_path)
-  % disp('Skipping Moving Files for troubleshoting...');
+  movefile(mov_listing{ii},local_copy_path)
+  movefile(csv_listing{ii},local_copy_path)
+ % disp('Skipping Moving Files for troubleshoting...');
 end
 
 
 
 
 mkdir(destined_path);
- copyfile(local_copy_path,destined_path)
+copyfile(local_copy_path,destined_path)
 disp('Parsing Data...');
  cd(destined_path);
 
@@ -89,7 +89,7 @@ disp('Parsing Data...');
             FS_AV_Parse();
               if STATUS(i) == 1;
                   % Automated template matching, and potentially ROI % extraction...
-                  try
+                 try
                   AR_Check_Directed(pwd,BOX_ID{i},BIRD_ID{i})
                   
                 catch
