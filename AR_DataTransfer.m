@@ -86,7 +86,7 @@ disp('Parsing Data...');
  cd(destined_path);
 
     try
-            FS_AV_Parse();
+            
               if STATUS(i) == 1;
                   % Automated template matching, and potentially ROI % extraction...
                  try
@@ -97,6 +97,7 @@ disp('Parsing Data...');
                            'Dir/Undir','An error occured in parsing Dir/UnDir data in ARGO')
                   end
               end
+              FS_AV_Parse();
     catch
         warning('Problem using function FS_AV_Parse.  Skipping to next BOX');
         % email that there was a problem
