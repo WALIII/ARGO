@@ -66,7 +66,7 @@ TIMES_B(:,1) =  datenum(G(:,2),G(:,3),G(:,4),G(:,5),G(:,6),G(:,7));
 TIMES_B(:,2) =  G(:,10+str2num(BOX(4:5))); % index into the proper BOX
 
 
-
+count = 0;
 for ii = 1: length(mov_listing);
     try
 mov_T(:,ii) = datenum(str2num(filenames{ii}(1:4)),str2num(filenames{ii}(6:7)),str2num(filenames{ii}(9:10)),str2num(filenames{ii}(12:13)),str2num(filenames{ii}(15:16)),str2num(filenames{ii}(18:19)));
@@ -77,7 +77,8 @@ mov_Tclose(1,ii) = TIMES_B((idx),1); %closest value
 mov_Tclose(2,ii) =  TIMES_B(find(TIMES_B(:,1) == mov_Tclose(1,ii)),2);
     catch
     disp('Bad filename');
-    filenames(ii) = [];
+    filenames(ii-count) = [];
+    count = count+1;
 continue
     end
 end
