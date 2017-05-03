@@ -69,10 +69,12 @@ setpref('Internet','SMTP_Password',password);
 % The following four lines are necessary only if you are using GMail as
 % your SMTP server. Delete these lines wif you are using your own SMTP
 % server.
-props = java.lang.System.getProperties;
-props.setProperty('mail.smtp.auth','true');
-props.setProperty('mail.smtp.socketFactory.class', 'javax.net.ssl.SSLSocketFactory');
-props.setProperty('mail.smtp.socketFactory.port','465');
+
+
+props=java.lang.System.getProperties;
+pp=props.setProperty('mail.smtp.auth','true'); %#ok
+pp=props.setProperty('mail.smtp.socketFactory.class','javax.net.ssl.SSLSocketFactory'); %#ok
+pp=props.setProperty('mail.smtp.socketFactory.port','465'); %#ok
 
 %% Send the email
 sendmail(emailto,subject,message)
